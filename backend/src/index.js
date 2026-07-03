@@ -20,7 +20,7 @@ import { app, server } from "./lib/socket.js";
 
 const PORT = process.env.PORT || 5000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
-const publicDir = path.join(process.cwd(), "public");
+const publicDir = path.join(process.cwd(), "../frontend/dist");
 
 // Webhook rotası clerkMiddleware'den ÖNCE gelmeli (Ham veri/raw body ihtiyacı için)
 app.use("/api/webhooks/clerk", express.raw({ type: "application/json" }), clerckWebhook);
