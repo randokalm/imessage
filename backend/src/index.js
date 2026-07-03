@@ -22,7 +22,7 @@ const publicDir = path.join(process.cwd(), "public");
 
 
 //it is important to import the webhook route after the clerkMiddleware, otherwise the webhook will not work
-app.use("/api/webhooks/clerk",express.raw({type:"applicatipon/json"}),clerckWebhook);
+app.use("/api/webhooks/clerk", express.raw({ type: "application/json" }), clerckWebhook);
 
 app.use(express.json());
 app.use(cors({origin: FRONTEND_URL, credentials: true}));
