@@ -1,5 +1,6 @@
 import express from "express"
 import cors from "cors"
+import job from "./lib/cron.js";
 
 import "dotenv/config"
 
