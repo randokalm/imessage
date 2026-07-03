@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import Message from "../models/Message.js";
 import { hasImageKitConfig } from "../lib/imagekit.js";
+import { get } from "mongoose";
 
 
 export async function getUsersForSidebar(req, res) {
@@ -89,6 +90,12 @@ export async function sendMessage(req, res) {
         })
 
         await newMessage.save();
+
+        const getReceiverSocketId = getReceiverSocketId(receiverId);
+
+        if(getReceiverSocketId) {
+            io.to(getReceiverSocketId).emit("newMessage", newMessage);
+        }
 
         res.status(201).json(newMessage);
 
