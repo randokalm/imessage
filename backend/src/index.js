@@ -1,6 +1,5 @@
 import express from "express"
 import cors from "cors"
-import job from "./lib/cron.js";
 
 import "dotenv/config"
 
@@ -11,12 +10,19 @@ import { clerkMiddleware } from '@clerk/express'
 
 import User from "./models/User.js"
 import { connectDB } from "./lib/db.js"
+import job from "./lib/cron.js";
+
+import clerckWebhook from ".webhooks/clerk.webhook.js";
 
 const app = express()
 const PORT = process.env.PORT 
 const FRONTEND_URL = process.env.FRONTEND_URL; 
 
 const publicDir = path.join(process.cwd(), "public");
+
+
+//it is important to import the webhook route after the clerkMiddleware, otherwise the webhook will not work
+app.use("/api/webhooks/clerk",express.raw({type:"applicatipon/json"}),clerckWebhook);
 
 app.use(express.json());
 app.use(cors({origin: FRONTEND_URL, credentials: true}));
