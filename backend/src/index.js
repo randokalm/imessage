@@ -39,15 +39,10 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// Frontend Statik Dosya Sunumu (Production İçin)
-if (fs.existsSync(publicDir)) {
-  app.use(express.static(publicDir));
-
-  // Catch-all rotası (Bilinmeyen tüm istekleri React index.html'e yönlendirir)
-  app.get("*", (req, res, next) => {
-    res.sendFile(path.join(publicDir, "index.html"), (err) => next(err));
-  });
-}
+// Catch-all rotası (Bilinmeyen tüm istekleri React index.html'e yönlendirir)
+app.get(/(.*)/, (req, res, next) => {
+  res.sendFile(path.join(publicDir, "index.html"), (err) => next(err));
+});
 
 // app.listen yerine server.listen kullanıyoruz!
 server.listen(PORT, () => {
