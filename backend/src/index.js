@@ -39,6 +39,18 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
+// API Rotaları
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
+
+// Statik dosyaları (JS, CSS, resimler vs.) servis et — catch-all'dan ÖNCE olmalı!
+app.use(express.static(publicDir));
+
+// Catch-all rotası (Bilinmeyen tüm istekleri React index.html'e yönlendirir)
+app.get(/(.*)/, (req, res, next) => {
+  res.sendFile(path.join(publicDir, "index.html"), (err) => next(err));
+});
+
 // Catch-all rotası (Bilinmeyen tüm istekleri React index.html'e yönlendirir)
 app.get(/(.*)/, (req, res, next) => {
   res.sendFile(path.join(publicDir, "index.html"), (err) => next(err));
