@@ -1,7 +1,6 @@
 function ChatPage() {
   return (
-    <div>ChatPage</div>
+    <div>ChatPage </div>
   )
 }
-
 export default ChatPage
