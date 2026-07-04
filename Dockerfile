@@ -19,4 +19,4 @@ COPY --from=frontend-build /app/frontend/dist ./public
 ENV NODE_ENV=production
 EXPOSE 5000
 
-CMD ["node", "index.js"]
+CMD ["node", "src/index.js"]
