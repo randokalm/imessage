@@ -13,8 +13,13 @@
     "@clerk/clerk-react": "^5.61.8",
     "@clerk/express": "^2.1.35",
     "@clerk/react": "^6.11.3",
+    "@heroui/react": "^3.2.1",
+    "@heroui/styles": "^3.2.1",
+    "@tailwindcss/vite": "^4.3.2",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-router": "^8.1.0",
+    "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
